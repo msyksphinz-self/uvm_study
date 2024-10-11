@@ -1,0 +1,12 @@
+xsim.dir
+xelab.log
+xelab.pb
+xsim.dir
+xsim.jou
+xsim.log
+xsim_*.backup.jou
+xsim_*.backup.log
+xvlog.log
+xvlog.pb
+*/dsim_work
+dsim.log
