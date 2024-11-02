@@ -1,7 +1,7 @@
 class monitor extends uvm_monitor;
   `uvm_component_utils(monitor)
 
-  function now (string name="monitor", uvm_component parent=full);
+  function new (string name="monitor", uvm_component parent=null);
     super.new(name, parent);
   endfunction // now
 
@@ -21,7 +21,7 @@ semaphore sema4;
   virtual task run_phase (uvm_phase phase);
     super.run_phase(phase);
     fork
-      sample_port("Theard0");
+      sample_port("Thread0");
       sample_port("Thread1");
     join
   endtask // run_phase
@@ -37,8 +37,8 @@ semaphore sema4;
         sema4.get();
         item.addr = vif.addr;
         item.data = vif.data;
-        `uvm_info("MON", $sformat("T=%0t [Monitor] %s First part over",
-                                  $time, tag), UVM_LOW);
+        `uvm_info("MON", $sformatf("T=%0t [Monitor] %s First part over",
+                                   $time, tag), UVM_LOW);
         @(posedge vif.clk);
         sema4.put();
         item.addr_a = vif.addr_a;

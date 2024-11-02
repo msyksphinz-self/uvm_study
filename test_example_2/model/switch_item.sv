@@ -19,7 +19,7 @@ bit [15: 0]      data_b;
     `uvm_field_int (data_a, UVM_DEFAULT)
     `uvm_field_int (addr_b, UVM_DEFAULT)
     `uvm_field_int (data_b, UVM_DEFAULT)
-  `end_object_utils_end
+  `uvm_object_utils_end
 
   function new (string name = "switch_item");
     super.new(name);
