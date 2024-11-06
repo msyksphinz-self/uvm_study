@@ -44,9 +44,11 @@ initial begin
   $finish;
 end
 
+`ifdef VCS
 initial begin
   $fsdbDumpfile ("novas.fsdb");
   $fsdbDumpvars (0, tb_top);
 end
+`endif // VCS
 
 endmodule // tb_top

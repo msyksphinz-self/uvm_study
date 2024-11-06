@@ -25,6 +25,7 @@ dsim_run:
 	dsim -top work.tb_top -genimage image -uvm 1.2 +incdir+model +incdir+tb $(SRCS) +acc+b
 	dsim -image image -uvm 1.2 -waves waves.mxd -sv_seed random +UVM_NO_RELNOTES +UVM_TESTNAME=$(TESTNAME)
 
+VCS_OPTIONS += +define+VCS
 VCS_OPTIONS += +incdir+./model
 VCS_OPTIONS += -ntb_opts uvm
 VCS_OPTIONS += -l vcs.log
