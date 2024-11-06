@@ -24,21 +24,23 @@ class arbiter4_monitor extends uvm_monitor;
       arbiter4_seq_item item = new;
 
       @ (posedge vif.clk);
-      item.i_valid0 = vif.i_valid0;
-      item.i_data0  = vif.i_data0;
-      item.i_valid1 = vif.i_valid1;
-      item.i_data1  = vif.i_data1;
-      item.i_valid2 = vif.i_valid2;
-      item.i_data2  = vif.i_data2;
-      item.i_valid3 = vif.i_valid3;
-      item.i_data3  = vif.i_data3;
+      if (vif.i_valid0 | vif.i_valid1 | vif.i_valid2 | vif.i_valid3) begin
+        item.i_valid0 = vif.i_valid0;
+        item.i_data0  = vif.i_data0;
+        item.i_valid1 = vif.i_valid1;
+        item.i_data1  = vif.i_data1;
+        item.i_valid2 = vif.i_valid2;
+        item.i_data2  = vif.i_data2;
+        item.i_valid3 = vif.i_valid3;
+        item.i_data3  = vif.i_data3;
 
-      item.o_valid = vif.o_valid;
-      item.o_data  = vif.o_data;
-      @ (posedge vif.clk);
+        item.o_valid = vif.o_valid;
+        item.o_data  = vif.o_data;
+        @ (posedge vif.clk);
 
-      `uvm_info (get_type_name(), $sformatf("Monitor found packet %s", item.convert2str()), UVM_LOW)
-      mon_analysis_port.write(item);
+        `uvm_info (get_type_name(), $sformatf("Monitor found packet %s", item.convert2str()), UVM_LOW)
+        mon_analysis_port.write(item);
+      end // if (vif.i_valid0 | vif.i_valid1 | vif.i_valid2 | vif.i_valid3)
     end // forever begin
   endtask // run_phase
 
