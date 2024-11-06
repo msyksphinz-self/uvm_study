@@ -7,13 +7,16 @@ class arbiter4_gen_item_seq extends uvm_sequence;
 
   rand int num;
 
-  constraint c1 { soft num inside {[10:20]}; }
+  constraint c1 { soft num inside {[1000:2000]}; }
 
   virtual task body ();
     assert(this.randomize()) else `uvm_error("SEQ", "Randomization of num failed");
 
     for (int i = 0; i < num; i++) begin
       arbiter4_seq_item item = arbiter4_seq_item::type_id::create("item");
+      if (!item.randomize()) begin
+        `uvm_error("arbiter4_seq", "Randomization failed!")
+      end
       start_item(item);
       `uvm_info ("SEQ", $sformatf ("Generate new item: "), UVM_LOW)
       item.print();

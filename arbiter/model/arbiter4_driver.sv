@@ -28,12 +28,12 @@ class arbiter4_driver extends uvm_driver #(arbiter4_seq_item);
   virtual task drive_item (arbiter4_seq_item item);
     vif.i_valid0 <= item.i_valid0;
     vif.i_data0  <= item.i_data0;
-    vif.i_valid0 <= item.i_valid0;
-    vif.i_data0  <= item.i_data0;
-    vif.i_valid0 <= item.i_valid0;
-    vif.i_data0  <= item.i_data0;
-    vif.i_valid0 <= item.i_valid0;
-    vif.i_data0  <= item.i_data0;
+    vif.i_valid1 <= item.i_valid1;
+    vif.i_data1  <= item.i_data1;
+    vif.i_valid2 <= item.i_valid2;
+    vif.i_data2  <= item.i_data2;
+    vif.i_valid3 <= item.i_valid3;
+    vif.i_data3  <= item.i_data3;
     @ (posedge vif.clk);
   endtask // drive_item
 

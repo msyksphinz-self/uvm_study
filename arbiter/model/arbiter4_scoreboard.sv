@@ -14,6 +14,9 @@ class arbiter4_scoreboard extends uvm_scoreboard;
   endfunction // build_phase
 
   virtual function write (arbiter4_seq_item item);
+
+    `uvm_info (get_type_name(), $sformatf("Scoreboard found packet %s", item.convert2str()), UVM_LOW)
+
     if ((item.i_valid3 | item.i_valid2 | item.i_valid1 | item.i_valid0) &&
         !item.o_valid) begin
         `uvm_error (get_type_name(),

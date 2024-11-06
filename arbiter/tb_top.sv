@@ -1,4 +1,4 @@
-`timescale 1ps/1ps
+// `timescale 1ps/1ps
 
 module tb_top;
 
@@ -42,6 +42,11 @@ initial begin
 
   run_test();
   $finish;
+end
+
+initial begin
+  $fsdbDumpfile ("novas.fsdb");
+  $fsdbDumpvars (0, tb_top);
 end
 
 endmodule // tb_top
