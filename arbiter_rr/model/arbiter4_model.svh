@@ -1,0 +1,7 @@
+`include "arbiter4_seq_item.sv"
+`include "arbiter4_driver.sv"
+`include "arbiter4_monitor.sv"
+`include "arbiter4_sequence.sv"
+`include "arbiter4_scoreboard.sv"
+`include "arbiter4_agent.sv"
+`include "arbiter4_env.sv"
