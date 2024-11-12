@@ -1,0 +1,7 @@
+`include "mem_rw_seq_item.sv"
+`include "mem_rw_driver.sv"
+`include "mem_rw_monitor.sv"
+`include "mem_rw_sequence.sv"
+`include "mem_rw_scoreboard.sv"
+`include "mem_rw_agent.sv"
+`include "mem_rw_env.sv"
