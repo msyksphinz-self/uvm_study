@@ -20,7 +20,7 @@ logic [N-1: 0]         w_valids;
 always_comb begin
   for (int i = 0; i < N; i++) begin
     logic [$clog2(N)-1: 0] idx;
-    idx = r_current_ptr + i + 1 > N ? r_current_ptr + i + 1 : r_current_ptr + i + 1 - N;
+    idx = r_current_ptr + i + 1 < N ? r_current_ptr + i + 1 : r_current_ptr + i + 1 - N;
     w_valids[i] = i_valid[idx];
     w_idx   [i] = idx;
     w_data  [i] = i_data[idx];
