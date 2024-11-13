@@ -18,9 +18,17 @@ always_ff @ (posedge i_clk) begin
   end
 end
 
-always_ff @ (posedge i_clk) begin
-  if (i_valid & !i_rw) begin
-    o_data <= mem[i_addr];
+// always_ff @ (posedge i_clk) begin
+//   if (i_valid & !i_rw) begin
+//     o_data <= mem[i_addr];
+//   end
+// end
+
+assign o_data = mem[i_addr];
+
+initial begin
+  for (int i = 0; i < 256; i++) begin
+    mem[i] = 'h0;
   end
 end
 
