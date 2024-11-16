@@ -21,12 +21,9 @@ class test extends uvm_test;
     phase.raise_objection(this);
     apply_reset();
 
-    seq.randomize() with {
-       opcode inside {'h33};
-       funct3 inside {'h0};
-       funct7 inside {'h0};
-    };
-    Seq.start(e0.a0.s0);
+    seq.randomize() with {item.opcode inside {'h33};};
+
+    seq.start(e0.a0.s0);
     phase.drop_objection(this);
   endtask // run_phase
 

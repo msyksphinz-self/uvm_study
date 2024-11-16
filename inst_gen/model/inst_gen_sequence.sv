@@ -5,6 +5,7 @@ class inst_gen_gen_item_seq extends uvm_sequence;
     super.new(name);
   endfunction // new
 
+  inst_gen_seq_item item;
   rand int num;
 
   constraint c1 { soft num inside {[10:20]}; }
@@ -13,7 +14,7 @@ class inst_gen_gen_item_seq extends uvm_sequence;
     assert(this.randomize()) else `uvm_error("SEQ", "Randomization of num failed");
 
     for (int i = 0; i < num; i++) begin
-      inst_gen_seq_item item = inst_gen_seq_item::type_id::create("item");
+      item = inst_gen_seq_item::type_id::create("item");
       if (!item.randomize()) begin
         `uvm_error("inst_gen_seq", "Randomization failed!")
       end
