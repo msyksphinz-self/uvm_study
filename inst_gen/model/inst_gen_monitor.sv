@@ -1,16 +1,16 @@
-class mem_rw_monitor extends uvm_monitor;
-  `uvm_component_utils(mem_rw_monitor);
+class inst_gen_monitor extends uvm_monitor;
+  `uvm_component_utils(inst_gen_monitor);
 
-  function new (string name="mem_rw_monitor", uvm_component parent=null);
+  function new (string name="inst_gen_monitor", uvm_component parent=null);
     super.new(name, parent);
   endfunction // new
 
-  uvm_analysis_port #(mem_rw_seq_item) mon_analysis_port;
-  virtual mem_rw_if vif;
+  uvm_analysis_port #(inst_gen_seq_item) mon_analysis_port;
+  virtual inst_gen_if vif;
 
   virtual function void build_phase (uvm_phase phase);
     super.build_phase (phase);
-    if (!uvm_config_db #(virtual mem_rw_if)::get(this, "", "mem_rw_vif", vif)) begin
+    if (!uvm_config_db #(virtual inst_gen_if)::get(this, "", "inst_gen_vif", vif)) begin
       `uvm_fatal ("MON", "Could not give vif");
       end
     mon_analysis_port = new ("mon_analysis_port", this);
@@ -26,14 +26,14 @@ class mem_rw_monitor extends uvm_monitor;
     // transactions and writes into analysis port when complete
 
     forever begin
-      mem_rw_seq_item item = new;
+      inst_gen_seq_item item = new;
 
       item.i_valid = 1'b0;
 
       @ (posedge vif.clk);
 
       if (prev_read_req) begin
-        item = mem_rw_seq_item::type_id::create("read_tr", this);
+        item = inst_gen_seq_item::type_id::create("read_tr", this);
         item.i_valid = 1'b1;
         item.i_addr  = prev_read_addr;
         item.i_rw    = 0; // Read
@@ -45,7 +45,7 @@ class mem_rw_monitor extends uvm_monitor;
       end
 
       if (vif.i_valid && vif.i_rw) begin
-        item = mem_rw_seq_item::type_id::create("write_tr", this);
+        item = inst_gen_seq_item::type_id::create("write_tr", this);
         item.i_valid = vif.i_valid;
         item.i_addr  = vif.i_addr;
         item.i_rw    = vif.i_rw;
@@ -65,4 +65,4 @@ class mem_rw_monitor extends uvm_monitor;
     end // forever begin
   endtask // run_phase
 
-endclass // mem_rw_monitor
+endclass // inst_gen_monitor

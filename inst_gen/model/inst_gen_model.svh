@@ -1,0 +1,5 @@
+`include "inst_gen_seq_item.sv"
+`include "inst_gen_driver.sv"
+`include "inst_gen_sequence.sv"
+`include "inst_gen_agent.sv"
+`include "inst_gen_env.sv"
