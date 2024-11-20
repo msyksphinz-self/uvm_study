@@ -24,7 +24,7 @@ class arbiter2_rr_seq_item extends uvm_sequence_item;
   endfunction // new
 
   virtual function string convert2str();
-    return $sformatf ("i_valid0=%d, i_data0=0x%0h, i_valid1=%d, i_data1=0x%0h, o_valid=%d, o_data=0x%0h",
+    return $sformatf ("i_valid0=%d, i_data0=0x%04h, i_valid1=%d, i_data1=0x%04h, o_valid=%d, o_data=0x%04h",
                       i_valid0, i_data0, i_valid1, i_data1, o_valid, o_data);
   endfunction // convert2str
 
