@@ -32,7 +32,6 @@ class arbiter2_rr_monitor extends uvm_monitor;
 
         item.o_valid = vif.o_valid;
         item.o_data  = vif.o_data;
-        @ (posedge vif.clk);
 
         `uvm_info (get_type_name(), $sformatf("Monitor found packet %s", item.convert2str()), UVM_LOW)
         mon_analysis_port.write(item);

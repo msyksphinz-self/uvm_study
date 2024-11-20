@@ -13,18 +13,21 @@ import uvm_pkg::*;
 
 /////////////////////////////////////
 logic clk;
+logic reset_n;
 arbiter2_rr_if vif(clk);
 // clk
 initial begin
   clk <= 1'b1;
+  reset_n <= 1'b0;
   #100;
+  reset_n <= 1'b1;
   forever #50 clk <= ~clk;
 end
 
 arbiter2_rr u0
   (
    .i_clk     (clk),
-   .i_reset_n (1'b0 /* Temporary */),
+   .i_reset_n (reset_n),
 
    .i_valid0 (vif.i_valid0),
    .i_data0  (vif.i_data0 ),
